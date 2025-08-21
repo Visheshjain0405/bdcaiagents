@@ -33,7 +33,7 @@ const Navbar = () => {
       ]
       : userRole === 'orgadmin'
         ? [
-          { name: 'Dashboard', path: '/organization-dashboard', icon: FaUsers },
+          // { name: 'Dashboard', path: '/organization-dashboard', icon: FaUsers },
           // { name: 'Users', path: '/organization-dashboard/users', icon: FaBuilding },
           { name: 'Agents', path: '/organization-dashboard/agents', icon: FaPlayCircle },
         ]
