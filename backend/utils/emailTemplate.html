@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organization Account Created</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f8fafc;
+            color: #334155;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        /* Organization Details */
+        .org-details {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4f46e5;
+        }
+
+        .org-details h3 {
+            color: #1e293b;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .org-info {
+            display: grid;
+            gap: 12px;
+        }
+
+        .org-info-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .org-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .org-info-label {
+            font-weight: 500;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .org-info-value {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 14px;
+        }
+
+        /* Credentials Box */
+        .credentials-box {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #22c55e;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .credentials-box h3 {
+            color: #166534;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .credential-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .credential-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .credential-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            font-family: 'Courier New', monospace;
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+            word-break: break-all;
+        }
+
+        .security-note {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .security-note h4 {
+            color: #92400e;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .security-note p {
+            color: #92400e;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Next Steps */
+        .next-steps {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .next-steps h3 {
+            color: #1e293b;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            margin-bottom: 12px;
+            padding-left: 40px;
+            position: relative;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #4f46e5;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 20px;
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .footer a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: #374151;
+            margin: 20px 0;
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 600px) {
+            .email-container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+
+            .header,
+            .content,
+            .footer {
+                padding: 25px 20px;
+            }
+
+            .credentials-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .org-info-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .greeting {
+                font-size: 16px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .email-container {
+                box-shadow: none;
+                border: 1px solid #e2e8f0;
+            }
+
+            .cta-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-icon">
+                <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />
+                </svg>
+            </div>
+            <h1>Account Created Successfully</h1>
+            <p>Welcome to our organization management platform</p>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <div class="greeting">
+                Hello {{POINT_OF_CONTACT}},
+            </div>
+
+            <div class="message">
+                We're excited to inform you that your organization account has been successfully created on our
+                platform. Your organization is now ready to access all the features and services we provide.
+            </div>
+
+            <!-- Organization Details -->
+            <div class="org-details">
+                <h3>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    </svg>
+                    Organization Details
+                </h3>
+                <div class="org-info">
+                    <div class="org-info-item">
+                        <span class="org-info-label">Organization Name:</span>
+                        <span class="org-info-value">{{ORG_NAME}}</span>
+                    </div>
+                    <div class="org-info-item">
+                        <span class="org-info-label">Organization Type:</span>
+                        <span class="org-info-value">{{ORG_TYPE}}</span>
+                    </div>
+                    <div class="org-info-item">
+                        <span class="org-info-label">Plan Type:</span>
+                        <span class="org-info-value">{{PLAN_TYPE}}</span>
+                    </div>
+                    <div class="org-info-item">
+                        <span class="org-info-label">Business Area:</span>
+                        <span class="org-info-value">{{BUSINESS_AREA}}</span>
+                    </div>
+                    <div class="org-info-item">
+                        <span class="org-info-label">Location:</span>
+                        <span class="org-info-value">{{LOCATION}}</span>
+                    </div>
+                    <div class="org-info-item">
+                        <span class="org-info-label">Contact Email:</span>
+                        <span class="org-info-value">{{EMAIL}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Credentials -->
+            <div class="credentials-box">
+                <h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M15 7a2 2 0 012 2m0 0v6a2 2 0 01-2 2H9a2 2 0 01-2-2V9a2 2 0 012-2m6 0V7a2 2 0 00-2-2H9a2 2 0 00-2 2v2m6 0H9" />
+                    </svg>
+                    Your Login Credentials
+                </h3>
+                <div class="credentials-grid">
+                    <div class="credential-item">
+                        <div class="credential-label">User ID</div>
+                        <div class="credential-value">{{USER_ID}}</div>
+                    </div>
+                    <div class="credential-item">
+                        <div class="credential-label">Password</div>
+                        <div class="credential-value">{{PASSWORD}}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Note -->
+            <div class="security-note">
+                <h4>
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    Important Security Information
+                </h4>
+                <p>Please keep your credentials secure and do not share them. Change your password after your first
+                    login.</p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="next-steps">
+                <h3>
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Next Steps
+                </h3>
+                <ol class="steps-list">
+                    <li>Click the "Login to Your Account" button below</li>
+                    <li>Use the User ID and Password</li>
+                    <li>Finish organization profile setup</li>
+                    <li>Explore your dashboard</li>
+                    <li>Change password for better security</li>
+                    <li>Add team members and set permissions</li>
+                </ol>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-section">
+                <a href="#" class="cta-button">Login to Your Account</a>
+            </div>
+
+            <div class="message">
+                Need help? Contact our support team anytime.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <h4>Need Help?</h4>
+                <p>Email: <a href="mailto:support@yourcompany.com">support@yourcompany.com</a></p>
+                <p>Phone: <a href="tel:+919054353157">+91 90543 53157</a></p>
+                <p>Website: <a href="#">www.yourcompany.com</a></p>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Your Company Name. All rights reserved.</p>
+                <p>This email was sent to {{EMAIL}}</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
