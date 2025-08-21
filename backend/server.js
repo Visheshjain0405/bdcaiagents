@@ -16,11 +16,8 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: [
-    "http://localhost:3000",              // local dev
-    "https://your-frontend.vercel.app"    // deployed frontend on Vercel
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  origin: "https://bdcaiagents.vercel.app",  // allow your Vercel frontend
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
 
