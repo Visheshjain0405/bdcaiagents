@@ -51,7 +51,7 @@ const LoginPage = ({ setUser }) => {
                     if (userType === 'super_user') {
                         navigate('/superadmindashboard');
                     } else if (userType === 'orgadmin') {
-                        navigate('/organization-dashboard');
+                        navigate('/organization-dashboard/agents');
                     } else {
                         navigate('/dashboard'); // fallback
                     }
