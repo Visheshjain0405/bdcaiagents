@@ -104,8 +104,9 @@ const createEmailTemplate = (orgData, credentials) => {
 
                 <!-- CTA Button -->
                 <div style="text-align: center; margin-bottom: 30px;">
-                  <a href="https://your-platform-login-url.com" style="background: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">Login to Your Account</a>
-                </div>
+                                  <a href="https://bdcaiagents.vercel.app/" style="background: #4f46e5; color: #ffffff; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">Login to Your Account</a>
+
+                 </div>
 
                 <p style="font-size: 16px; line-height: 1.7;">If you have any questions or need help, feel free to contact our support team.</p>
               </td>
