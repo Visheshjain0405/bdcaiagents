@@ -67,13 +67,13 @@ function OrganizationAgents() {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 sm:p-6">
+      <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center min-h-96">
             <div className="text-center">
               <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <h2 className="text-xl font-semibold text-indigo-900 mb-2">Loading Agents</h2>
-              <p className="text-indigo-600">Please wait while we fetch your organization's agents...</p>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">Loading Agents</h2>
+              <p className="text-gray-600">Please wait while we fetch your agents...</p>
             </div>
           </div>
         </div>
@@ -84,7 +84,7 @@ function OrganizationAgents() {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 sm:p-6">
+      <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center min-h-96">
             <div className="text-center bg-white rounded-2xl shadow-lg p-8 border border-red-200">
@@ -109,15 +109,15 @@ function OrganizationAgents() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-4 sm:p-6">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-8">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
-              Organization Agents
+            <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">
+              Available Agents
             </h1>
-            <p className="text-gray-600 text-lg">Explore and discover available AI agents for your organization</p>
+            <p className="text-gray-600 text-lg">Discover and use AI agents for your organization</p>
             {agents.length > 0 && (
               <div className="mt-4 inline-flex items-center px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">
                 <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
@@ -129,7 +129,7 @@ function OrganizationAgents() {
 
         {/* Main Content */}
         {agents.length === 0 ? (
-          <div className="bg-white rounded-2xl shadow-lg p-8 border border-indigo-100">
+          <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
             <div className="text-center py-12">
               <div className="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-12 h-12 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,30 +146,27 @@ function OrganizationAgents() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {agents.map((agent) => (
               <div
                 key={agent._id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden group"
+                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 overflow-hidden flex flex-col h-full"
               >
-                {/* Header with Agent Name and Category */}
-                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 relative">
+                {/* Header with indigo to purple gradient background */}
+                <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-white">
                   <div className="flex justify-between items-start mb-4">
-                    {/* Agent Initial */}
-                    <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
-                      <span className="text-white text-xl font-bold">
-                        {agent.agentName ? agent.agentName.charAt(0).toUpperCase() : 'A'}
-                      </span>
-                    </div>
+                    <h3 className="text-xl font-bold text-white truncate flex-1 pr-2 min-h-[28px]">
+                      {agent.agentName || 'Unnamed Agent'}
+                    </h3>
                   </div>
 
-                  {/* Agent Category and Subscription Type Pills */}
-                  <div className="flex gap-2 flex-wrap">
+                  {/* Category and Subscription Type Pills */}
+                  <div className="flex gap-2 flex-wrap min-h-[32px] items-start">
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white bg-opacity-20 text-white border border-white border-opacity-30">
-                      {agentCategories.find((cat) => cat.value === agent.agentCategory)?.label || agent.agentCategory}
+                      {agentCategories.find((cat) => cat.value === agent.agentCategory)?.label || agent.agentCategory || 'Other'}
                     </span>
                     <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-white bg-opacity-20 text-white border border-white border-opacity-30">
-                      {subscriptionTypes.find((sub) => sub.value === agent.subscriptionType)?.label || agent.subscriptionType}
+                      {subscriptionTypes.find((sub) => sub.value === agent.subscriptionType)?.label || agent.subscriptionType || 'N/A'}
                     </span>
                     {/* Active Status Indicator */}
                     {agent.isActive && (
@@ -180,18 +177,13 @@ function OrganizationAgents() {
                   </div>
                 </div>
 
-                {/* Card Body */}
-                <div className="p-6 space-y-4">
-                  {/* Agent Name */}
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{agent.agentName}</h3>
-                  </div>
-
+                {/* White content area - flexible grow */}
+                <div className="bg-white px-6 py-4 space-y-4 flex-grow flex flex-col">
                   {/* Overview Section */}
-                  <div>
-                    <h4 className="text-sm font-semibold text-gray-800 mb-2">Overview</h4>
+                  <div className="flex-grow">
+                    <h4 className="text-sm font-semibold text-gray-800 mb-3">Overview</h4>
                     <div
-                      className="text-sm text-gray-600 leading-relaxed"
+                      className="text-sm text-gray-600 leading-relaxed min-h-[60px]"
                       dangerouslySetInnerHTML={{
                         __html: truncateDescription(agent.description || '<p>No description available</p>')
                       }}
@@ -199,9 +191,9 @@ function OrganizationAgents() {
                   </div>
 
                   {/* Details Section */}
-                  <div>
+                  <div className="mt-auto">
                     <h4 className="text-sm font-semibold text-gray-800 mb-3">Details</h4>
-                    <div className="space-y-3">
+                    <div className="space-y-3 min-h-[120px]">
                       {/* Live Link */}
                       {agent.liveLink && (
                         <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg border border-blue-100">
@@ -228,50 +220,36 @@ function OrganizationAgents() {
                         <div className="p-3 bg-green-50 rounded-lg border border-green-100">
                           <h5 className="text-xs font-semibold text-green-800 mb-1">Pricing</h5>
                           <p className="text-lg font-bold text-green-900">
-                            {agent.pricingCurrency === 'INR' ? '₹' : '$'}{agent.pricing}
+                            {agent.pricingCurrency === 'INR' ? '₹' : '$'}
+                            {agent.pricing}
                           </p>
                         </div>
                       )}
-
-                      {/* API Documentation */}
-                      {agent.apiDocumentation && (
-                        <div className="p-3 bg-purple-50 rounded-lg border border-purple-100">
-                          <h5 className="text-xs font-semibold text-purple-800 mb-1">API Documentation</h5>
-                          <a
-                            href={agent.apiDocumentation}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-sm font-medium text-purple-600 hover:text-purple-800 transition-colors"
-                          >
-                            View Documentation
-                          </a>
-                        </div>
-                      )}
                     </div>
-                  </div>
 
-                  {/* View Details Button */}
-                  <button
-                    onClick={() => handleViewDetails(agent)}
-                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-50 text-indigo-700 rounded-xl hover:bg-indigo-100 font-medium transition-all duration-200 border border-indigo-100"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm7-4v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h16a2 2 0 012 2zm-4.5 4a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" />
-                    </svg>
-                    View Details
-                  </button>
+                    {/* View Details Button */}
+                    <button
+                      onClick={() => handleViewDetails(agent)}
+                      className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 font-medium transition-all duration-200 mt-6"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0zm7-4v8a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h16a2 2 0 012 2zm-4.5 4a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" />
+                      </svg>
+                      View Details
+                    </button>
+                  </div>
                 </div>
 
-                {/* Footer Status */}
-                <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
+                {/* Footer Status - always at bottom */}
+                <div className="bg-white px-6 py-4 border-t border-gray-100 mt-auto">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full ${agent.isActive ? 'bg-green-500' : 'bg-gray-400'}`}></div>
-                      <span className="text-xs font-medium text-gray-600">
+                      <span className="text-sm font-medium text-gray-600">
                         {agent.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-sm text-gray-400">
                       ID: {agent._id?.slice(-8) || 'N/A'}
                     </div>
                   </div>
@@ -290,12 +268,6 @@ function OrganizationAgents() {
             <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 relative">
               <div className="flex justify-between items-center">
                 <div className="flex items-center gap-4">
-                  {/* Agent Initial */}
-                  <div className="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
-                    <span className="text-white text-xl font-bold">
-                      {selectedAgent.agentName ? selectedAgent.agentName.charAt(0).toUpperCase() : 'A'}
-                    </span>
-                  </div>
                   <h2 className="text-2xl font-bold text-white">{selectedAgent.agentName}</h2>
                 </div>
                 <button
@@ -407,11 +379,11 @@ function OrganizationAgents() {
                           href={selectedAgent.apiDocumentation}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm font-medium"
+                          className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors text-sm font-medium"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
+                          </svg>
                           API Documentation
                         </a>
                       )}
